@@ -1,0 +1,17 @@
+#!/bin/bash
+cd /home/sajith/tools/forticlientsslvpn
+echo "Starting Test"
+count=$( ping -c 4 10.13.16.2 | grep icmp* | wc -l )
+if [ $count -eq 0 ]
+then
+    echo "Seems vpn is not alive.. but killing it anyway"
+    ps -ef | grep forti |grep -v grep |cut -d " " -f5 | xargs kill -HUP
+    echo "restoring resolv conf"
+    sudo cp resolve.conf.original /etc/resolv.conf
+    echo "Starting vpn"
+    (./script.exp)&
+    echo "script spanwed"
+else
+    echo "Yes! Host is Alive!"
+fi
+echo "all done sleeping ....."
