@@ -9,7 +9,7 @@ then
     echo "restoring resolv conf"
     sudo cp resolve.conf.original /etc/resolv.conf
     echo "Starting vpn"
-    (./script.exp)&
+    (/home/pagero/tools/autovpn/script.exp)&
     echo "script spanwed"
 else
     echo "Yes! Host is Alive!"
