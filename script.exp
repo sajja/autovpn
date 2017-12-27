@@ -48,8 +48,8 @@ set timeout 2
 match_max 100000
 expect -exact "\[0;30m\[46m\[1;37m\[46msajith \[0;36m\[47m \[0;30m\[47m~  tools forticlientsslvpn\[0;37m\[44m  Tue Oct 04 \[0;34m\[47m 09:19:55 \[0;37m\[46m\[0m\[0;30m\[46m⚡ 56%\[0;36m\[40m\[0m\r\r
 \$ "
-send -- "cd /home/sajith/tools/forticlientsslvpn"
-expect -exact "/home/sajith/tools/forticlientsslvpn"
+send -- "cd /home/pagero/tools/forticlientsslvpn"
+expect -exact "/home/pagero/tools/forticlientsslvpn"
 send -- "\r"
 expect -exact "\r
 \[0;30m\[46m\[1;37m\[46msajith \[0;36m\[47m \[0;30m\[47m~  tools forticlientsslvpn\[0;37m\[44m  Tue Oct 04 \[0;34m\[47m 09:20:31 \[0;37m\[46m\[0m\[0;30m\[46m⚡ 57%\[0;36m\[40m\[0m\r\r

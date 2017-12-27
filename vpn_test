@@ -1,17 +1,24 @@
 #!/bin/bash
 cd /home/pagero/tools/forticlientsslvpn
-echo "Starting Test"
+echo "----------Starting Test----------"
 count=$( ping -c 4 10.13.16.2 | grep icmp* | wc -l )
-if [ $count -eq 0 ]
-then
-    echo "Seems vpn is not alive.. but killing it anyway"
-    ps -ef | grep forti |grep -v grep |cut -d " " -f5 | xargs kill -HUP
+if [ $count -eq 0 ]; then
+    echo "`date` Seems vpn is not alive.. but killing it anyway"
+    
+    echo "Killing the script.exp"
+    ps -ef | grep script.exp |grep -v grep |cut -d " " -f 4 | xargs kill -9 -1
+    ps -ef | grep script.exp |grep -v grep |cut -d " " -f 5 | xargs kill -9 -1
+    echo "Killed script.exp"
+
+    ps -ef | grep forti |grep -v grep |cut -d " " -f5 | xargs kill -9 -1
+    ps -ef | grep forti |grep -v grep |cut -d " " -f4 | xargs kill -9 -1
     echo "restoring resolv conf"
     sudo cp resolve.conf.original /etc/resolv.conf
     echo "Starting vpn"
-    (/home/pagero/tools/autovpn/script.exp)&
+    /home/pagero/tools/autovpn/script.exp
+
     echo "script spanwed"
 else
-    echo "Yes! Host is Alive!"
+    echo "`date` Yes! Host is Alive!"
 fi
-echo "all done sleeping ....."
+echo "`date` all done sleeping ....."
