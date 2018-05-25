@@ -1,0 +1,17 @@
+#!/bin/bash
+echo "----------Starting VPN----------"
+count=$( ping -c 4 10.13.16.2 | grep icmp* | wc -l )
+if [ $count -eq 0 ]; then
+    echo "`date` Seems vpn is not alive.. but killing it anyway"
+   
+   sudo nmcli con down id 'Pagero' 
+    #echo "restoring resolv conf"
+    #sudo cp resolve.conf.original /etc/resolv.conf
+   
+    echo "Starting vpn"
+   sudo nmcli con up id 'Pagero'
+
+else
+    echo "`date` Yes! Host is Alive!"
+fi
+echo "`date` all done sleeping ....."
